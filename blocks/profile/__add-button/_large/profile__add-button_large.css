@@ -1,6 +1,6 @@
 .profile__add-button_large {
-  width: 16px;
-  height: 16px;
+  width: 22px;
+  height: 22px;
 }
 
 @media (min-width: 320px) {
@@ -9,22 +9,9 @@
   }
 }
 
-/*@media (min-width: 768px) {*/
-/*  .header {*/
-/*    min-width: 720px;*/
-/*    padding: 88px 24px 0 24px;*/
-/*  }*/
-/*}*/
-
-/*@media (min-width: 1024px) {*/
-/*  .header {*/
-/*    min-width: 690px;*/
-/*    padding: 92px 286px 0 48px;*/
-/*  }*/
-/*}*/
-
-@media (min-width: 1280px) {
+@media (min-width: 768px) {
   .profile__add-button_large {
-    min-width: 150px;
+    display: inline;
+    padding: 14px 64px;
   }
 }

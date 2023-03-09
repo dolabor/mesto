@@ -1,0 +1,22 @@
+.destinations {
+  margin: 0;
+}
+
+@media (min-width: 320px) {
+  .destinations {
+    padding: 0 19px 48px 19px;
+  }
+}
+
+@media (min-width: 768px) {
+  .destinations {
+    padding: 36px 48px 48px 48px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .destinations {
+    min-width: 880px;
+    padding: 50px 200px 66px 200px;
+  }
+}

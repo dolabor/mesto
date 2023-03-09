@@ -10,20 +10,6 @@
   }
 }
 
-/*@media (min-width: 768px) {*/
-/*  .header {*/
-/*    min-width: 720px;*/
-/*    padding: 88px 24px 0 24px;*/
-/*  }*/
-/*}*/
-
-/*@media (min-width: 1024px) {*/
-/*  .header {*/
-/*    min-width: 690px;*/
-/*    padding: 92px 286px 0 48px;*/
-/*  }*/
-/*}*/
-
 @media (min-width: 1280px) {
   .header__logo {
     width: 142px;

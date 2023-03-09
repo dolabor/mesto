@@ -9,14 +9,7 @@
   }
 }
 
-/*@media (min-width: 768px) {*/
-/*  .header {*/
-/*    min-width: 720px;*/
-/*    padding: 88px 24px 0 24px;*/
-/*  }*/
-/*}*/
-
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .profile__edit-button_large {
     display: inline;
   }

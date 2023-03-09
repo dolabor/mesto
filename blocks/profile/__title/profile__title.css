@@ -13,27 +13,15 @@
     min-width: 189px;
     font-size: 27px;
     line-height: 33px;
+    margin-left: 18px;
   }
 }
 
-/*@media (min-width: 768px) {*/
-/*  .header {*/
-/*    min-width: 720px;*/
-/*    padding: 88px 24px 0 24px;*/
-/*  }*/
-/*}*/
-
-/*@media (min-width: 1024px) {*/
-/*  .header {*/
-/*    min-width: 690px;*/
-/*    padding: 92px 286px 0 48px;*/
-/*  }*/
-/*}*/
-
-@media (min-width: 1280px) {
+@media (min-width: 768px) {
   .profile__title {
     min-width: 294px;
     font-size: 42px;
     line-height: 48px;
+    margin-left: 30px;
   }
 }
