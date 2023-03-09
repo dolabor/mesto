@@ -1,0 +1,30 @@
+.profile__add-button_small {
+  width: 16px;
+  height: 16px;
+}
+
+@media (min-width: 320px) {
+  .profile__add-button_small {
+    min-width: inherit;
+  }
+}
+
+/*@media (min-width: 768px) {*/
+/*  .header {*/
+/*    min-width: 720px;*/
+/*    padding: 88px 24px 0 24px;*/
+/*  }*/
+/*}*/
+
+/*@media (min-width: 1024px) {*/
+/*  .header {*/
+/*    min-width: 690px;*/
+/*    padding: 92px 286px 0 48px;*/
+/*  }*/
+/*}*/
+
+@media (min-width: 1280px) {
+  .profile__add-button_small {
+    display: none;
+  }
+}

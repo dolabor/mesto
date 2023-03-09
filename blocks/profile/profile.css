@@ -1,0 +1,33 @@
+.profile {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+@media (min-width: 320px) {
+  .profile {
+    min-width: 280px;
+    padding:  42px 19px 36px 19px;
+  }
+}
+
+/*@media (min-width: 768px) {*/
+/*  .header {*/
+/*    min-width: 720px;*/
+/*    padding: 88px 24px 0 24px;*/
+/*  }*/
+/*}*/
+
+/*@media (min-width: 1024px) {*/
+/*  .header {*/
+/*    min-width: 690px;*/
+/*    padding: 92px 286px 0 48px;*/
+/*  }*/
+/*}*/
+
+@media (min-width: 1280px) {
+  .profile {
+    min-width: 880px;
+    padding: 40px 200px 50px 200px;
+  }
+}

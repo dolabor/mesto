@@ -1,0 +1,24 @@
+.profile__edit-button_large {
+  width: 24px;
+  height: 24px;
+}
+
+@media (min-width: 320px) {
+  .profile__edit-button_large {
+    display: none;
+  }
+}
+
+/*@media (min-width: 768px) {*/
+/*  .header {*/
+/*    min-width: 720px;*/
+/*    padding: 88px 24px 0 24px;*/
+/*  }*/
+/*}*/
+
+@media (min-width: 1024px) {
+  .profile__edit-button_large {
+    display: inline;
+  }
+}
+
