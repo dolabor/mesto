@@ -31,7 +31,7 @@ popupCloseButton.addEventListener('click', function closePopup() {
 })
 
 // Находим форму в DOM
-let formElement = document.querySelector('.popup__user-info');
+let formElement = document.querySelector('.popup__container');
 // Находим поля формы в DOM
 let nameInput = document.querySelector('.popup__name');
 let jobInput = document.querySelector('.popup__occupation');
