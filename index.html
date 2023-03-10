@@ -19,7 +19,7 @@
         <div class="profile__name">
           <div class="profile__heading">
             <div class="profile__username">
-              <h1 class="profile__title ">Жак-Ив Кусто</h1>
+              <h1 class="profile__title" id="user-name"></h1>
               <button class="button profile__edit-button">
                 <img class="profile__edit-button_small" src="./images/edit-button-small.svg"
                      alt="Кнопка редактирования">
@@ -27,7 +27,7 @@
                      alt="Кнопка редактирования">
               </button>
             </div>
-            <h2 class="profile__subtitle">Исследователь океана</h2>
+            <h2 id="user-occupation" class="profile__subtitle"></h2>
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@
         </li>
         <li class="element">
           <img class="element__image" src="./images/Elbrus.jpg" alt="Эльбрус">
-           <div class="element__caption">
+          <div class="element__caption">
             <p class="element__name">Эльбрус</p>
             <button class="button">
               <img class="element__like-button" src="./images/like.svg" alt="Нравится">
@@ -80,7 +80,7 @@
         </li>
         <li class="element">
           <img class="element__image" src="./images/Dombay.jpg" alt="Домбай">
-           <div class="element__caption">
+          <div class="element__caption">
             <p class="element__name">Домбай</p>
             <button class="button">
               <img class="element__like-button" src="./images/like.svg" alt="Нравится">
@@ -103,7 +103,28 @@
   <footer class='footer'>
     <p class="footer__copyright">&COPY; 2023. Mesto Russia</p>
   </footer>
-</div>
 
+  <section class="popup">
+    <div class="popup__banner">
+      <button class="popup__close-button button" type="button">
+        <img class="popup__close-button_image" src="./images/Close-icon.svg" alt="Закрыть">
+      </button>
+
+      <div class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="popup__user-info">
+          <label><input id="name" class="popup__name" type="text" placeholder="Имя"></label>
+          <label><input id="occupation" class="popup__occupation" type="text"
+                        placeholder="О себе"></label>
+          <button class="popup__submit-button button" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
+  </section>
+
+  <script src="./scripts/index.js" defer></script>
+
+</div>
 </body>
 </html>

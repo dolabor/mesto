@@ -1,0 +1,19 @@
+.popup__title {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+@media (min-width: 320px) {
+  .popup__title {
+    padding: 0 0 75px 0;
+  }
+}
+
+@media (min-width: 1280px) {
+  .popup__title {
+    padding: 0 0 54px 0;
+  }
+}
