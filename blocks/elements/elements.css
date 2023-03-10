@@ -1,14 +1,11 @@
 .elements {
-  margin-block-start: 0;
-  margin-block-end: 0;
-  margin-inline-start: 0;
-  margin-inline-end: 0;
-  padding-inline-start: 0;
+  width: 100%;
+  padding: 0;
   list-style-type: none;
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fit, 282px);
-  grid-template-rows: repeat(2, 361px);
+  grid-template-rows: repeat(2, 362px);
   margin: 0;
 }
 

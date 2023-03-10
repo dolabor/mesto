@@ -1,20 +1,24 @@
 .footer {
-  max-width: 100%;
+  width: 100%;
   margin: 0;
-  margin-block-start: 0;
-  margin-block-end: 0;
 }
 
 @media (min-width: 320px) {
   .footer {
-    min-width: 282px;
+    max-width: 282px;
     padding: 0 19px 36px 19px;
+  }
+}
+
+@media (min-width: 768px) {
+  .footer {
+    padding: 0 0 48px 88px;
   }
 }
 
 @media (min-width: 1280px) {
   .footer {
-    min-width: 318px;
-    padding: 0 200px 60px 200px;
+    max-width: 318px;
+    padding: 0 0 60px 280px;
   }
 }

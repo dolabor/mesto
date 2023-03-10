@@ -1,5 +1,6 @@
 .destinations {
   margin: 0;
+  max-width: 100%;
 }
 
 @media (min-width: 320px) {
@@ -16,7 +17,8 @@
 
 @media (min-width: 1280px) {
   .destinations {
-    min-width: 880px;
-    padding: 50px 200px 66px 200px;
+    max-width: 880px;
+    padding: 50px 0 66px 0;
+    margin: auto;
   }
 }

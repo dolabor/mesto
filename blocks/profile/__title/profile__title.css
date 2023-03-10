@@ -6,6 +6,9 @@
   font-weight: 500;
   max-width: 100%;
   font-style: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media (min-width: 320px) {
