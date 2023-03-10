@@ -1,10 +1,11 @@
-# Проект: Место
+# __Путешествия по России__
 
+-----
 ## Описание проекта
 Данный проект создан с целью закрепления на практике учебного материала по основам JavaScript.
 
 ## Ссылка на проект
-https://dolabor.github.io/russian-travel/index.html
+https://dolabor.github.io/mesto/index.html
 
 ## Использовались:
 * Флексбокс верcтска
@@ -12,9 +13,9 @@ https://dolabor.github.io/russian-travel/index.html
 * Адаптивная верстка
 * Позиционирование
 * Организация файловой структуры по БЭМ (nested)
-* Основы JavaScript (Popup)
+* Основы JS
 
 ## Технологии
 * HTML5
 * CSS3
-* JS
+* Java-Script
