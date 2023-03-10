@@ -40,5 +40,7 @@ function handleFormSubmit(evt) {
   evt.preventDefault(); //
   userNameElement.textContent = userNameInput.value;
   userOccupationElement.textContent = userOccupationInput.value;
+
+  editPopup.classList.remove("popup_opened");
 }
 formElement.addEventListener('submit', handleFormSubmit);
