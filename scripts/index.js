@@ -10,28 +10,24 @@ let editPopup = document.querySelector('.popup');
 let editProfileButton = document.querySelector('.profile__edit-button');
 
 
-let userName = 'Жак-Ив Кусто';
-let userOccupation = 'Исследователь океана';
-let userNameElement = document.querySelector('#user-name');
-userNameElement.textContent = userName;
-let userOccupationElement = document.querySelector('#user-occupation');
-userOccupationElement.textContent = userOccupation;
+let userName = document.getElementById('name');
+let userOccupation = document.getElementById('occupation');
+
+let userNameElement = document.getElementById('user-name');
+userNameElement.textContent = userName.getAttribute('value');
+let userOccupationElement = document.getElementById('user-occupation');
+userOccupationElement.textContent = userOccupation.getAttribute('value');
 
 let userNameInput = document.querySelector('.popup__name');
 let userOccupationInput = document.querySelector('.popup__occupation');
 
 editProfileButton.addEventListener('click', function openPopup() {
   editPopup.classList.add("popup_opened");
-  console.log(editPopup.classList);
-
-  userNameInput.value = userNameElement.textContent;
-  userOccupationInput.value = userOccupationElement.textContent;
 });
 
 let popupCloseButton = document.querySelector('.popup__close-button');
 popupCloseButton.addEventListener('click', function closePopup() {
   editPopup.classList.remove("popup_opened");
-  console.log(editPopup.classList);
 })
 
 // Находим форму в DOM
