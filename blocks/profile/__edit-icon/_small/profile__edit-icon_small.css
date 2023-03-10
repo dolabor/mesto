@@ -1,15 +1,15 @@
-.profile__edit-button_small {
+.profile__edit-icon_small {
   padding: 0 0 0 10px;
 }
 
 @media (min-width: 320px) {
-  .profile__edit-button_small {
+  .profile__edit-icon_small {
     display: inline;
   }
 }
 
 @media (min-width: 768px) {
-  .profile__edit-button_small {
+  .profile__edit-icon_small {
     display: none;
   }
 }
