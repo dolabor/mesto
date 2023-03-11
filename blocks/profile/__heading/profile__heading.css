@@ -15,10 +15,3 @@
     align-items: flex-start;
   }
 }
-
-@media (min-width: 1280px) {
-  .profile__heading {
-    min-width: 336px;
-    padding: 0 0 0 30px;
-  }
-}
