@@ -1,49 +1,24 @@
-// Собираем HTML элементы страницы в переменные
+// Собираем HTML элементы страницы в переменные //
 
-const editProfileButton = document.querySelector('.profile__edit-button');
+// * редактирование профиля пользователя* //
+const userName = document.getElementById('name'); // поиск в input popup
+const userOccupation = document.getElementById('occupation');
 
-let userName = document.getElementById('name');
-let userOccupation = document.getElementById('occupation');
-
-const userNameElement = document.getElementById('user-name');
+const userNameElement = document.getElementById('user-name'); // поиск полей, куда нужно вписать информацию пользователя
 userNameElement.textContent = userName.getAttribute('value');
 const userOccupationElement = document.getElementById('user-occupation');
 userOccupationElement.textContent = userOccupation.getAttribute('value');
 
-const editProfilePopupCloseButton = document.querySelector('#edit-profile-form .popup__close-button');
-const addPlacePopupCloseButton = document.querySelector('#add-place-form .popup__close-button');
-
+const editProfileButton = document.querySelector('.profile__edit-button');
+const addPlaceButton = document.querySelector('.profile__add-button');
+const editProfilePopup = document.getElementById('edit-profile-form');
+const addPlacePopup = document.querySelector('#add-place-form');
 const editFormElement = document.querySelector('#edit-profile-form .popup__container');
 const addFormElement = document.querySelector('#add-place-form .popup__container');
 
-// Обработчик открытия popup при нажатии кнопки
-const addPlacePopup = document.querySelector('#add-place-form');
-const editProfilePopup = document.getElementById('edit-profile-form');
-
-function openPopup(popup) {
-  popup.classList.add("popup_opened");
-}
-function closePopup(popup) {
-  popup.classList.remove("popup_opened");
-}
-
-// Обработчик формы отправки
-function handleFormSubmit(evt) {
-  evt.preventDefault(); //
-  userNameElement.textContent = userName.value;
-  userOccupationElement.textContent = userOccupation.value;
-}
-
-// Назначение обработчика на событие при нажатии кнопки 'edit profile' на открытие popup
-editProfileButton.addEventListener('click', function(){
-  openPopup(editProfilePopup);
-});
-// Назначение обработчика при нажатии кнопки 'close' на закрытие popup
-editProfilePopupCloseButton.addEventListener('click', function(){
-  closePopup(editProfilePopup);
-});
-// Назначение обработчика при нажатии кнопки 'submit' на отправку формы
-editFormElement.addEventListener('submit', handleFormSubmit);
+// *кнопки закрытия-открытия popup* //
+const editProfilePopupCloseButton = document.querySelector('#edit-profile-form .popup__close-button');
+const addPlacePopupCloseButton = document.querySelector('#add-place-form .popup__close-button');
 
 const initialCards = [
   {
@@ -74,10 +49,26 @@ const initialCards = [
 
 const cardsContainer = document.querySelector('.destinations');
 
-initialCards.forEach(function (element) {
-  cardsContainer.append(createCard(element.name, element.link))
-})
+// *добавление новой карточки через форму* //
+const imageInput = document.getElementById('image-ref');
+const nameInput = document.getElementById('title');
 
+// Функции открытия-закрытия popup //
+function openPopup(popup) {
+  popup.classList.add("popup_opened");
+}
+function closePopup(popup) {
+  popup.classList.remove("popup_opened");
+}
+
+// Функция формы отправки данных о пользователе //
+function handleFormSubmit(evt) {
+  evt.preventDefault(); //
+  userNameElement.textContent = userName.value;
+  userOccupationElement.textContent = userOccupation.value;
+}
+
+// Функция создания новой карточки //
 function createCard(newName, newLink) {
   const newCard = document.getElementById('element-template').content.cloneNode(true);
   const cardName = newCard.querySelector('.element__name');
@@ -102,21 +93,7 @@ function handleDeleteButtonClick(evt) {
   card.remove();
 }
 
-// Открытие popup для добавления новых карточек
-let addPopup = document.getElementById('add-place-form');
-let addPlaceButton = document.querySelector('.profile__add-button');
-
-addPlaceButton.addEventListener('click', function () {
-  openPopup(addPlacePopup);
-});
-addPlacePopupCloseButton.addEventListener('click', function (){
-  closePopup(addPlacePopup);
-});
-
-// Добавление новой карточки через форму
-let imageInput = document.getElementById('image-ref');
-let nameInput = document.getElementById('title');
-
+//Функция отправки формы о местах //
 function handleAddFormSubmit(evt) {
   evt.preventDefault();
   const addedCard = createCard(nameInput.value, imageInput.value);
@@ -125,7 +102,27 @@ function handleAddFormSubmit(evt) {
   cardsContainer.prepend(addedCard);
 }
 
+initialCards.forEach(function (element) {
+  cardsContainer.append(createCard(element.name, element.link))
+})
+
+// Назначения обработчиков //
+editProfileButton.addEventListener('click', function(){
+  openPopup(editProfilePopup);
+});
+
+editProfilePopupCloseButton.addEventListener('click', function(){
+  closePopup(editProfilePopup);
+});
+
+editFormElement.addEventListener('submit', handleFormSubmit);
+
+addPlaceButton.addEventListener('click', function () {
+  openPopup(addPlacePopup);
+});
+
+addPlacePopupCloseButton.addEventListener('click', function (){
+  closePopup(addPlacePopup);
+});
+
 addFormElement.addEventListener('submit', handleAddFormSubmit);
-
-//
-
