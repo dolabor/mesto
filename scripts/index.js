@@ -13,17 +13,18 @@ userOccupationElement.textContent = userOccupation.getAttribute('value');
 let userNameInput = document.querySelector('.popup__name');
 let userOccupationInput = document.querySelector('.popup__occupation');
 
-let popupCloseButton = document.querySelector('.popup__close-button');
+let editProfilePopupCloseButton = document.querySelector('#edit-profile-form .popup__close-button');
+let addPlacePopupCloseButton = document.querySelector('#add-place-form .popup__close-button');
 
 let formElement = document.querySelector('.popup__container');
 
 // Обработчик открытия popup при нажатии кнопки 'edit'
-function openPopup() {
+function openEditPopup() {
   editPopup.classList.add("popup_opened");
 }
 
 // Обработчик закрытия popup при нажатии кнопки 'close'
-function closePopup() {
+function closeEditPopup() {
   editPopup.classList.remove("popup_opened");
 }
 
@@ -32,17 +33,16 @@ function handleFormSubmit(evt) {
   evt.preventDefault(); //
   userNameElement.textContent = userNameInput.value;
   userOccupationElement.textContent = userOccupationInput.value;
-  closePopup();
+  closeEditPopup();
 }
 
 // Назначение обработчика на событие при нажатии кнопки 'edit profile' на открытие popup
-editProfileButton.addEventListener('click', openPopup);
+editProfileButton.addEventListener('click', openEditPopup);
 // Назначение обработчика при нажатии кнопки 'close' на закрытие popup
-popupCloseButton.addEventListener('click', closePopup);
+editProfilePopupCloseButton.addEventListener('click', closeEditPopup);
 //Назначение обработчика при нажатии кнопки 'submit' на отправку формы
 formElement.addEventListener('submit', handleFormSubmit);
 
-//6 cards
 const initialCards = [
   {
     name: 'Архыз',
@@ -93,7 +93,6 @@ function handleDeleteButtonClick(evt) {
   card.remove();
 }
 
-
 // //like section
 // let likeButtons = document.querySelectorAll('.element__like-button');
 //
@@ -103,5 +102,16 @@ function handleDeleteButtonClick(evt) {
 //   })
 // });
 
-// let addPopup = document.getElementById('add-place-form');
-// let addPlaceButton = document.querySelector('.profile__add-button');
+// Открытие popup для добавления новых карточек
+let addPopup = document.getElementById('add-place-form');
+let addPlaceButton = document.querySelector('.profile__add-button');
+
+function openAddForm() {
+  addPopup.classList.add("popup_opened");
+}
+addPlaceButton.addEventListener('click', openAddForm);
+
+function closeAddForm() {
+  addPopup.classList.remove("popup_opened");
+}
+addPlacePopupCloseButton.addEventListener('click', closeAddForm);
