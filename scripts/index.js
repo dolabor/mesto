@@ -83,6 +83,8 @@ function createCard(newName, newLink) {
   cardImage.setAttribute('alt', `Фотография`);
 
   cardImage.addEventListener('click', function () {
+    const popupEnlargedImage = document.querySelector('.popup__enlarged-photo');
+    popupEnlargedImage.setAttribute('src', newLink);
     openPopup(imagePopup);
   })
 
