@@ -71,6 +71,8 @@ function handleFormSubmit(evt) {
   evt.preventDefault(); //
   userNameElement.textContent = userName.value;
   userOccupationElement.textContent = userOccupation.value;
+  editFormElement.reset();
+  closePopup(editProfilePopup);
 }
 
 // Функция создания новой карточки //
@@ -141,4 +143,3 @@ imagePopupCloseButton.addEventListener('click', function () {
 
 editFormElement.addEventListener('submit', handleFormSubmit);
 addFormElement.addEventListener('submit', handleAddFormSubmit);
-
