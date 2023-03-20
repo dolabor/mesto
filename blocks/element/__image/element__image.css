@@ -7,3 +7,6 @@
   opacity: 0.7;
 }
 
+.element__image:hover {
+  opacity: 0.5;
+}

@@ -30,6 +30,6 @@
 
 @media (min-width: 1280px) {
   .popup__container {
-    max-width: 430px;
+    max-width: 75vw;
   }
 }

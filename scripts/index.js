@@ -11,14 +11,18 @@ userOccupationElement.textContent = userOccupation.getAttribute('value');
 
 const editProfileButton = document.querySelector('.profile__edit-button');
 const addPlaceButton = document.querySelector('.profile__add-button');
+
 const editProfilePopup = document.getElementById('edit-profile-form');
 const addPlacePopup = document.querySelector('#add-place-form');
+const imagePopup = document.querySelector('#enlarged-image');
+
 const editFormElement = document.querySelector('#edit-profile-form .popup__container');
 const addFormElement = document.querySelector('#add-place-form .popup__container');
 
 // *кнопки закрытия-открытия popup* //
 const editProfilePopupCloseButton = document.querySelector('#edit-profile-form .popup__close-button');
 const addPlacePopupCloseButton = document.querySelector('#add-place-form .popup__close-button');
+const imagePopupCloseButton = document.querySelector('#enlarged-image .popup__close-button');
 
 const initialCards = [
   {
@@ -57,6 +61,7 @@ const nameInput = document.getElementById('title');
 function openPopup(popup) {
   popup.classList.add("popup_opened");
 }
+
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
 }
@@ -76,6 +81,10 @@ function createCard(newName, newLink) {
   const cardImage = newCard.querySelector('.element__image');
   cardImage.setAttribute('src', newLink);
   cardImage.setAttribute('alt', `Фотография`);
+
+  cardImage.addEventListener('click', function () {
+    openPopup(imagePopup);
+  })
 
   const deleteButton = newCard.querySelector('.element__delete-button');
   deleteButton.addEventListener('click', handleDeleteButtonClick);
@@ -107,22 +116,27 @@ initialCards.forEach(function (element) {
 })
 
 // Назначения обработчиков //
-editProfileButton.addEventListener('click', function(){
+
+editProfileButton.addEventListener('click', function () {
   openPopup(editProfilePopup);
 });
 
-editProfilePopupCloseButton.addEventListener('click', function(){
+editProfilePopupCloseButton.addEventListener('click', function () {
   closePopup(editProfilePopup);
 });
-
-editFormElement.addEventListener('submit', handleFormSubmit);
 
 addPlaceButton.addEventListener('click', function () {
   openPopup(addPlacePopup);
 });
 
-addPlacePopupCloseButton.addEventListener('click', function (){
+addPlacePopupCloseButton.addEventListener('click', function () {
   closePopup(addPlacePopup);
 });
 
+imagePopupCloseButton.addEventListener('click', function () {
+  closePopup(imagePopup);
+});
+
+editFormElement.addEventListener('submit', handleFormSubmit);
 addFormElement.addEventListener('submit', handleAddFormSubmit);
+
