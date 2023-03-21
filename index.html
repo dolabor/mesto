@@ -65,10 +65,10 @@
       </button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <input id="name" class="popup__input" type="text" placeholder="Имя" name="Имя пользователя"
-             value="Жак-Ив Кусто">
+             value="Жак-Ив Кусто" required>
       <label for="name"></label>
       <input id="occupation" class="popup__occupation popup__input" type="text"
-             placeholder="О себе" name="О пользователе" value="Исследователь океана">
+             placeholder="О себе" name="О пользователе" value="Исследователь океана" required>
       <label for="occupation"></label>
       <button class="popup__submit-button button" type="submit" aria-label="Сохранить">Сохранить</button>
     </form>
@@ -80,27 +80,28 @@
         <img class="popup__close-button-image" src="./images/Close-icon.svg" alt="Закрыть">
       </button>
       <h2 class="popup__title">Новое место</h2>
-      <input id="title" class="popup__input" type="text" placeholder="Название" name="Название места">
+      <input id="title" class="popup__input" type="text" placeholder="Название" name="Название места" required>
       <label for="title"></label>
       <input id="image-ref" class="popup__occupation popup__input" type="url"
-             placeholder="Ссылка на картинку" name="Ссылка на картинку">
+             placeholder="Ссылка на картинку" name="Ссылка на картинку" required>
       <label for="image-ref"></label>
       <button class="popup__submit-button button" type="submit" aria-label="Сохранить">Сохранить</button>
     </form>
   </section>
 
-  <section class="popup" id="enlarged-image">
+  <section class="popup popup__zoom" id="enlarged-image">
     <div class="popup__image-container">
       <button class="button popup__close-button" type="button" aria-label="Закрыть всплывающее окно">
         <img class="popup__close-button-image" src="./images/Close-icon.svg" alt="Закрыть">
       </button>
       <img class="popup__enlarged-photo"
            src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="">
-      <p class="popup__capture"></p>
+      <p class="popup__capture" id="popup-capture"></p>
     </div>
   </section>
 </div>
 
+<script src="./scripts/cards.js" defer></script>
 <script src="./scripts/index.js" defer></script>
 
 </body>
