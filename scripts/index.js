@@ -29,7 +29,9 @@ const cardsContainer = document.querySelector('.destinations');
 // *добавление новой карточки через форму* //
 const imageInput = document.querySelector('#image-ref');
 const nameInput = document.querySelector('#title');
-console.log(nameInput.value)
+
+const popupEnlargedImage = document.querySelector('.popup__enlarged-photo');
+const popupCaptureElement = document.querySelector('#popup-capture')
 
 // Функции открытия-закрытия popup //
 function openPopup(popup) {
@@ -56,10 +58,9 @@ function handleFormAddPlacesSubmit(evt) {
     name: nameInput.value,
     link: imageInput.value
   }
-  const enteredCard = createCard(addedCard);
   addFormElement.reset();
   closePopup(addPlacePopup);
-  cardsContainer.prepend(enteredCard);
+  renderCard(addedCard);
 }
 
 // Функция создания новой карточки //
@@ -71,14 +72,10 @@ function createCard(element) {
   cardImage.setAttribute('src', element.link);
   cardImage.setAttribute('alt', element.name);
 
-  cardsContainer.append(newCard);
-
   // Функция popup с увеличенным изображением карточки
   function zoomedPopup() {
-    const popupEnlargedImage = document.querySelector('.popup__enlarged-photo');
     popupEnlargedImage.setAttribute('src', element.link);
     popupEnlargedImage.setAttribute('alt', element.name);
-    const popupCaptureElement = document.querySelector('#popup-capture');
     popupCaptureElement.textContent = element.name;
     openPopup(imagePopup);
   }
@@ -95,6 +92,11 @@ function createCard(element) {
   return newCard;
 }
 
+function renderCard(element) {
+  const renderedCard = createCard(element);
+  cardsContainer.prepend(renderedCard);
+}
+
 // Функция удаления карточки
 function handleDeleteButtonClick(evt) {
   const button = evt.target;
@@ -102,13 +104,14 @@ function handleDeleteButtonClick(evt) {
   card.remove();
 }
 
-initialCards.forEach(createCard);
+initialCards.reverse();
+initialCards.forEach(renderCard);
 
 // Назначения обработчиков //
 editProfileButton.addEventListener('click', function () {
   editFormElement.reset();
-  userName.value = document.querySelector('#user-name').textContent;
-  userOccupation.value = document.querySelector('#user-occupation').textContent;
+  userName.value = userNameElement.textContent;
+  userOccupation.value = userOccupationElement.textContent;
   openPopup(editProfilePopup);
 });
 
