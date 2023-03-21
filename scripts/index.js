@@ -29,6 +29,7 @@ const cardsContainer = document.querySelector('.destinations');
 // *добавление новой карточки через форму* //
 const imageInput = document.querySelector('#image-ref');
 const nameInput = document.querySelector('#title');
+console.log(nameInput.value)
 
 // Функции открытия-закрытия popup //
 function openPopup(popup) {
@@ -51,10 +52,14 @@ function handleFormEditProfileSubmit(evt) {
 //Функция отправки формы о местах //
 function handleFormAddPlacesSubmit(evt) {
   evt.preventDefault();
-  const addedCard = createCard(nameInput.value, imageInput.value);
+  const addedCard = {
+    name: nameInput.value,
+    link: imageInput.value
+  }
+  const enteredCard = createCard(addedCard);
   addFormElement.reset();
   closePopup(addPlacePopup);
-  cardsContainer.prepend(addedCard);
+  cardsContainer.prepend(enteredCard);
 }
 
 // Функция создания новой карточки //
