@@ -102,10 +102,13 @@ initialCards.forEach(createCard);
 // Назначения обработчиков //
 editProfileButton.addEventListener('click', function () {
   editFormElement.reset();
+  userName.value = document.querySelector('#user-name').textContent;
+  userOccupation.value = document.querySelector('#user-occupation').textContent;
   openPopup(editProfilePopup);
 });
 
 editProfilePopupCloseButton.addEventListener('click', function () {
+  editFormElement.reset();
   closePopup(editProfilePopup);
 });
 
