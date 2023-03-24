@@ -53,36 +53,26 @@ const setEventListeners = (form, inputList, {
       toggleButtonDisability(submitButton, invalidSubmitButtonClass, inputList);
     });
   });
+
+  form.addEventListener('reset', function () {
+     disableButton(submitButton, config.invalidSubmitButtonClass);
+  })
 };
 
-const enableValidation = ({formSelector, inputSelector, submitButtonSelector, ...config}) => {
+const enableFormValidation = (form, {inputSelector, submitButtonSelector, ...config}) => {
 
-  const form = document.querySelector(formSelector);
-  const inputList = Array.from(document.querySelectorAll(`${inputSelector}`));
-  const submitButton = document.querySelector(submitButtonSelector);
+  const inputList = Array.from(form.querySelectorAll(`${inputSelector}`));
+  const submitButton = form.querySelector(submitButtonSelector);
 
   setEventListeners(form, inputList, config, submitButton);
-
-  editProfileButton.addEventListener('click', function () {
-    editFormElement.reset();
-    userName.value = userNameElement.textContent;
-    userOccupation.value = userOccupationElement.textContent;
-    openPopup(editProfilePopup);
-    disableButton(submitButton, editFormConfig.invalidSubmitButtonClass);
-    clearInputError(editProfilePopup, editFormConfig);
-  });
-
-
-  addPlaceButton.addEventListener('click', function () {
-    addFormElement.reset();
-    openPopup(addPlacePopup);
-    disableButton(submitButton, addFormConfig.invalidSubmitButtonClass);
-    clearInputError(addPlacePopup, addFormConfig);
-  });
 }
 
-enableValidation(editFormConfig);
-enableValidation(addFormConfig);
+function enableValidation() {
+  const formList = Array.from(document.forms);
+  formList.forEach(function(form) {
+    enableFormValidation(form, config);
+  })
+}
 
 function clearInputError(formSelector, config) {
   const formInputList = Array.from(formSelector.querySelectorAll(`.${config.activeErrorClass}`));
@@ -90,3 +80,5 @@ function clearInputError(formSelector, config) {
     hideInputError(span, config.activeErrorClass);
   })
 }
+
+enableValidation();

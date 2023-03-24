@@ -33,23 +33,23 @@ const nameInput = document.querySelector('#title');
 const popupEnlargedImage = document.querySelector('.popup__enlarged-photo');
 const popupCaptureElement = document.querySelector('#popup-capture')
 
-let openedPopup = document.querySelector(".popup_opened");
+let openedPopup;
 
 // Функции открытия-закрытия popup //
 function openPopup(popup) {
   openedPopup = popup;
   popup.classList.add("popup_opened");
-  document.addEventListener('keydown', keyHandlerEscape);
+  document.addEventListener('keydown', closingPopupByClickEscape);
   document.addEventListener('click', closingPopupByClickOverlay);
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
-  document.removeEventListener('keydown', keyHandlerEscape);
+  document.removeEventListener('keydown', closingPopupByClickEscape);
   document.removeEventListener('click', closingPopupByClickOverlay);
 }
 
-function keyHandlerEscape(evt) {
+function closingPopupByClickEscape(evt) {
   if (evt.key === 'Escape') {
     closePopup(openedPopup);
   }
@@ -66,7 +66,6 @@ function handleFormEditProfileSubmit(evt) {
   evt.preventDefault();
   userNameElement.textContent = userName.value;
   userOccupationElement.textContent = userOccupation.value;
-  editFormElement.reset();
   closePopup(editProfilePopup);
 }
 
@@ -126,8 +125,22 @@ function handleDeleteButtonClick(evt) {
 initialCards.reverse();
 initialCards.forEach(renderCard);
 
-editProfilePopupCloseButton.addEventListener('click', function () {
+editProfileButton.addEventListener('click', function () {
   editFormElement.reset();
+  userName.value = userNameElement.textContent;
+  userOccupation.value = userOccupationElement.textContent;
+  openPopup(editProfilePopup);
+  clearInputError(editProfilePopup, config);
+});
+
+
+addPlaceButton.addEventListener('click', function () {
+  addFormElement.reset();
+  openPopup(addPlacePopup);
+  clearInputError(addPlacePopup, config);
+});
+
+editProfilePopupCloseButton.addEventListener('click', function () {
   closePopup(editProfilePopup);
 });
 
