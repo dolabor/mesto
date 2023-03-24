@@ -3,7 +3,7 @@ const editFormConfig = {
   inputSelector: '#edit-profile-form .popup__input',
   errorClassTemplate: '.popup__input_error_type_',
   activeErrorClass: 'popup__input_error_active',
-  submitButtonSelector: '.popup__submit-button',
+  submitButtonSelector: '#edit-profile-form .popup__submit-button',
   invalidSubmitButtonClass: 'popup__submit-button_inactive'
 };
 
@@ -12,6 +12,6 @@ const addFormConfig = {
   inputSelector: '#add-place-form .popup__input',
   errorClassTemplate: '.popup__input_error_type_',
   activeErrorClass: 'popup__input_error_active',
-  submitButtonSelector: '.popup__submit-button',
+  submitButtonSelector: '#add-place-form .popup__submit-button',
   invalidSubmitButtonClass: 'popup__submit-button_inactive'
 };

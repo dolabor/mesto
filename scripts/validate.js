@@ -12,7 +12,7 @@ const disableButton = (submitButton, invalidSubmitButtonClass) => {
   submitButton.disabled = true;
 }
 
-const enableButton = (submitButton, invalidSubmitButtonClass) => {
+function enableButton(submitButton, invalidSubmitButtonClass) {
   submitButton.classList.remove(invalidSubmitButtonClass);
   submitButton.disabled = false;
 }
@@ -62,6 +62,23 @@ const enableValidation = ({formSelector, inputSelector, submitButtonSelector, ..
   const submitButton = document.querySelector(submitButtonSelector);
 
   setEventListeners(form, inputList, config, submitButton);
+
+  editProfileButton.addEventListener('click', function () {
+    editFormElement.reset();
+    userName.value = userNameElement.textContent;
+    userOccupation.value = userOccupationElement.textContent;
+    openPopup(editProfilePopup);
+    disableButton(submitButton, editFormConfig.invalidSubmitButtonClass);
+    clearInputError(editProfilePopup, editFormConfig);
+  });
+
+
+  addPlaceButton.addEventListener('click', function () {
+    addFormElement.reset();
+    openPopup(addPlacePopup);
+    disableButton(submitButton, addFormConfig.invalidSubmitButtonClass);
+    clearInputError(addPlacePopup, addFormConfig);
+  });
 }
 
 enableValidation(editFormConfig);

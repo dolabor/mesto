@@ -126,24 +126,9 @@ function handleDeleteButtonClick(evt) {
 initialCards.reverse();
 initialCards.forEach(renderCard);
 
-// Назначения обработчиков //
-editProfileButton.addEventListener('click', function () {
-  editFormElement.reset();
-  userName.value = userNameElement.textContent;
-  userOccupation.value = userOccupationElement.textContent;
-  openPopup(editProfilePopup);
-  clearInputError(editProfilePopup, editFormConfig);
-});
-
 editProfilePopupCloseButton.addEventListener('click', function () {
   editFormElement.reset();
   closePopup(editProfilePopup);
-});
-
-addPlaceButton.addEventListener('click', function () {
-  addFormElement.reset();
-  openPopup(addPlacePopup);
-  clearInputError(addPlacePopup, addFormConfig);
 });
 
 addPlacePopupCloseButton.addEventListener('click', function () {
