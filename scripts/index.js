@@ -33,18 +33,36 @@ const nameInput = document.querySelector('#title');
 const popupEnlargedImage = document.querySelector('.popup__enlarged-photo');
 const popupCaptureElement = document.querySelector('#popup-capture')
 
+const openedPopup = document.querySelector(".popup_opened");
+
 // Функции открытия-закрытия popup //
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener('keydown', keyHandlerEscape);
+  document.addEventListener('click', closingPopupByClickOverlay);
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener('keydown', keyHandlerEscape);
+  document.removeEventListener('click', closingPopupByClickOverlay);
+}
+
+function keyHandlerEscape(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(openedPopup);
+  }
+}
+
+function closingPopupByClickOverlay(evt) {
+  if (evt.target.classList.contains('popup_opened')) {
+    closePopup(evt.target);
+  }
 }
 
 // Функция формы отправки данных о пользователе //
 function handleFormEditProfileSubmit(evt) {
-  evt.preventDefault(); //
+  evt.preventDefault();
   userNameElement.textContent = userName.value;
   userOccupationElement.textContent = userOccupation.value;
   editFormElement.reset();
@@ -135,4 +153,3 @@ imagePopupCloseButton.addEventListener('click', function () {
 
 editFormElement.addEventListener('submit', handleFormEditProfileSubmit);
 addFormElement.addEventListener('submit', handleFormAddPlacesSubmit);
-

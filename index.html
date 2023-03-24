@@ -59,31 +59,61 @@
   </footer>
 
   <section class="popup" id="edit-profile-form">
-    <form class="popup__container" name="Информация о пользователе">
+    <form class="popup__container" name="Информация о пользователе" novalidate>
       <button class="button popup__close-button" type="button" aria-label="Закрыть всплывающее окно">
         <img class="popup__close-button-image" src="./images/Close-icon.svg" alt="Закрыть">
       </button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <input id="name" class="popup__input" type="text" placeholder="Имя" name="Имя пользователя"
-             value="Жак-Ив Кусто" required>
+      <input
+        id="name"
+        class="popup__input"
+        type="text"
+        placeholder="Имя"
+        name="name"
+        value="Жак-Ив Кусто"
+        minlength="2" maxlength = "40"
+        required>
+      <span class="popup__input_error popup__input_error_type_name">Вы пропустили это поле.</span>
       <label for="name"></label>
-      <input id="occupation" class="popup__occupation popup__input" type="text"
-             placeholder="О себе" name="О пользователе" value="Исследователь океана" required>
+      <input
+        id="occupation"
+        class="popup__occupation popup__input"
+        type="text"
+        placeholder="О себе"
+        name="occupation"
+        value="Исследователь океана"
+        minlength="2" maxlength = "200"
+        required>
+      <span class="popup__input_error popup__input_error_type_occupation">Вы пропустили это поле.</span>
       <label for="occupation"></label>
       <button class="popup__submit-button button" type="submit" aria-label="Сохранить">Сохранить</button>
     </form>
   </section>
 
   <section class="popup" id="add-place-form">
-    <form class="popup__container" name="Информация о месте">
+    <form class="popup__container" name="Информация о месте" novalidate>
       <button class="button popup__close-button" type="button" aria-label="Закрыть всплывающее окно">
         <img class="popup__close-button-image" src="./images/Close-icon.svg" alt="Закрыть">
       </button>
       <h2 class="popup__title">Новое место</h2>
-      <input id="title" class="popup__input" type="text" placeholder="Название" name="Название места" required>
+      <input
+        id="title"
+        class="popup__input"
+        type="text"
+        minlength="2" maxlength = "40"
+        placeholder="Название"
+        name="title"
+        required>
+      <span class="popup__input_error popup__input_error_type_title">Вы пропустили это поле.</span>
       <label for="title"></label>
-      <input id="image-ref" class="popup__occupation popup__input" type="url"
-             placeholder="Ссылка на картинку" name="Ссылка на картинку" required>
+      <input
+        id="image-ref"
+        class="popup__occupation popup__input"
+        type="url"
+        placeholder="Ссылка на картинку"
+        name="image-ref"
+        required>
+      <span class="popup__input_error popup__input_error_type_image-ref">Введите адрес сайта.</span>
       <label for="image-ref"></label>
       <button class="popup__submit-button button" type="submit" aria-label="Сохранить">Сохранить</button>
     </form>
@@ -103,6 +133,7 @@
 
 <script src="./scripts/cards.js" defer></script>
 <script src="./scripts/index.js" defer></script>
+<script src="./scripts/validate.js" defer></script>
 
 </body>
 </html>
