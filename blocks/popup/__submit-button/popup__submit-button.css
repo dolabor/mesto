@@ -15,10 +15,6 @@
   opacity: 0.8;
 }
 
-.popup__submit-button:disabled {
-
-}
-
 @media (min-width: 320px) {
   .popup__submit-button {
     margin-top: 45px;

@@ -33,10 +33,11 @@ const nameInput = document.querySelector('#title');
 const popupEnlargedImage = document.querySelector('.popup__enlarged-photo');
 const popupCaptureElement = document.querySelector('#popup-capture')
 
-const openedPopup = document.querySelector(".popup_opened");
+let openedPopup = document.querySelector(".popup_opened");
 
 // Функции открытия-закрытия popup //
 function openPopup(popup) {
+  openedPopup = popup;
   popup.classList.add("popup_opened");
   document.addEventListener('keydown', keyHandlerEscape);
   document.addEventListener('click', closingPopupByClickOverlay);
@@ -131,6 +132,7 @@ editProfileButton.addEventListener('click', function () {
   userName.value = userNameElement.textContent;
   userOccupation.value = userOccupationElement.textContent;
   openPopup(editProfilePopup);
+  clearInputError(editProfilePopup, editFormConfig);
 });
 
 editProfilePopupCloseButton.addEventListener('click', function () {
@@ -141,6 +143,7 @@ editProfilePopupCloseButton.addEventListener('click', function () {
 addPlaceButton.addEventListener('click', function () {
   addFormElement.reset();
   openPopup(addPlacePopup);
+  clearInputError(addPlacePopup, addFormConfig);
 });
 
 addPlacePopupCloseButton.addEventListener('click', function () {
