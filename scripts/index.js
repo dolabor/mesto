@@ -1,3 +1,6 @@
+// import { Card } from './Card.js';
+import FormValidator from './FormValidator.js';
+
 // Собираем HTML элементы страницы в переменные //
 
 // * редактирование профиля пользователя* //
@@ -16,8 +19,16 @@ const editProfilePopup = document.querySelector('#edit-profile-form');
 const addPlacePopup = document.querySelector('#add-place-form');
 const imagePopup = document.querySelector('#enlarged-image');
 
+// Формы для валидации//
 const editFormElement = document.querySelector('#edit-profile-form .popup__container');
 const addFormElement = document.querySelector('#add-place-form .popup__container');
+
+const editProfileFormValidation = new FormValidator(config, editFormElement);
+const addPlaceFormValidation = new FormValidator(config, addFormElement);
+
+// Экземпляр класса FormValidator для каждой формы //
+editProfileFormValidation.enableValidation();
+addPlaceFormValidation.enableValidation();
 
 // *кнопки закрытия-открытия popup* //
 const editProfilePopupCloseButton = document.querySelector('#edit-profile-form .popup__close-button');
@@ -130,14 +141,14 @@ editProfileButton.addEventListener('click', function () {
   userName.value = userNameElement.textContent;
   userOccupation.value = userOccupationElement.textContent;
   openPopup(editProfilePopup);
-  clearInputError(editProfilePopup, config);
+  editProfileFormValidation.clearInputError();
 });
 
 
 addPlaceButton.addEventListener('click', function () {
   addFormElement.reset();
   openPopup(addPlacePopup);
-  clearInputError(addPlacePopup, config);
+  addPlaceFormValidation.clearInputError();
 });
 
 editProfilePopupCloseButton.addEventListener('click', function () {
