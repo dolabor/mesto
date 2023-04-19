@@ -36,7 +36,8 @@ export default class FormValidator {
   };
 
   _checkInputValidity(input) {
-    const errorTextElement = document.querySelector(`${this._config.errorClassTemplate}${this._form.input.name}`)
+    const errorTextElement = document.querySelector(`${this._config.errorClassTemplate}${input.name}`);
+
     if (!input.validity.valid) {
       this._showInputError(errorTextElement, input.validationMessage);
     } else {
@@ -54,8 +55,8 @@ export default class FormValidator {
 
     inputList.forEach((input) => {
       input.addEventListener('input', (e) => {
-        this._checkInputValidity(input, this._config.errorClassTemplate, this._config.activeErrorClass);
-        this._toggleButtonDisability(submitButton, this._config.invalidSubmitButtonClass, inputList);
+        this._checkInputValidity(input);
+        this._toggleButtonDisability(submitButton, inputList);
       });
     });
 
@@ -65,7 +66,7 @@ export default class FormValidator {
   };
 
   clearInputError() {
-  const formInputList = Array.from(this._config.formSelector.querySelectorAll(`.${this._config.activeErrorClass}`));
+  const formInputList = Array.from(this._form.querySelectorAll(`.${this._config.activeErrorClass}`));
   formInputList.forEach((span) => {
     this._hideInputError(span);
   })
