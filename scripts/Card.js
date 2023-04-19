@@ -9,11 +9,10 @@ export default class Card {
     this._link = data.link;
   };
 
-  createCard(data) {
+  createCard() {
     this._newCard = this._cardTemplate.cloneNode(true);
     const cardName = this._newCard.querySelector('.element__name');
-    cardName.textContent = data.name;
-    console.log(cardName.textContent);
+    cardName.textContent = this._name;
     this._cardImage = this._newCard.querySelector('.element__image');
     this._cardImage.setAttribute('src', this._link);
     this._cardImage.setAttribute('alt', this._name);
@@ -42,7 +41,7 @@ export default class Card {
   _setEventListeners() {
     const deleteButton = this._newCard.querySelector('.element__delete-button');
 
-    deleteButton.querySelector('.element__delete-button').addEventListener('click', this._handleDeleteButtonClick);
+    deleteButton.addEventListener('click', this._handleDeleteButtonClick);
     this._cardImage.addEventListener('click', this._zoomedPopup);
     this._newCard.querySelector('.element__like-button').addEventListener('click', this._handleLikeButton);
   };
