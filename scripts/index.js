@@ -1,5 +1,6 @@
-// import { Card } from './Card.js';
+import Card from './Card.js';
 import FormValidator from './FormValidator.js';
+import {openPopup, closePopup, imagePopup} from './utils.js';
 
 // Собираем HTML элементы страницы в переменные //
 
@@ -17,7 +18,6 @@ const addPlaceButton = document.querySelector('.profile__add-button');
 
 const editProfilePopup = document.querySelector('#edit-profile-form');
 const addPlacePopup = document.querySelector('#add-place-form');
-const imagePopup = document.querySelector('#enlarged-image');
 
 // Формы для валидации//
 const editFormElement = document.querySelector('#edit-profile-form .popup__container');
@@ -41,36 +41,6 @@ const cardsContainer = document.querySelector('.destinations');
 const imageInput = document.querySelector('#image-ref');
 const nameInput = document.querySelector('#title');
 
-const popupEnlargedImage = document.querySelector('.popup__enlarged-photo');
-const popupCaptureElement = document.querySelector('#popup-capture')
-
-let openedPopup;
-
-// Функции открытия-закрытия popup //
-function openPopup(popup) {
-  openedPopup = popup;
-  popup.classList.add("popup_opened");
-  document.addEventListener('keydown', closingPopupByClickEscape);
-  document.addEventListener('click', closingPopupByClickOverlay);
-}
-
-function closePopup(popup) {
-  popup.classList.remove("popup_opened");
-  document.removeEventListener('keydown', closingPopupByClickEscape);
-  document.removeEventListener('click', closingPopupByClickOverlay);
-}
-
-function closingPopupByClickEscape(evt) {
-  if (evt.key === 'Escape') {
-    closePopup(openedPopup);
-  }
-}
-
-function closingPopupByClickOverlay(evt) {
-  if (evt.target.classList.contains('popup_opened')) {
-    closePopup(evt.target);
-  }
-}
 
 // Функция формы отправки данных о пользователе //
 function handleFormEditProfileSubmit(evt) {
@@ -92,45 +62,10 @@ function handleFormAddPlacesSubmit(evt) {
   renderCard(addedCard);
 }
 
-// Функция создания новой карточки //
-function createCard(element) {
-  const newCard = document.querySelector('#element-template').content.querySelector('.element').cloneNode(true);
-  const cardName = newCard.querySelector('.element__name');
-  cardName.textContent = element.name;
-  const cardImage = newCard.querySelector('.element__image');
-  cardImage.setAttribute('src', element.link);
-  cardImage.setAttribute('alt', element.name);
-
-  // Функция popup с увеличенным изображением карточки
-  function zoomedPopup() {
-    popupEnlargedImage.setAttribute('src', element.link);
-    popupEnlargedImage.setAttribute('alt', element.name);
-    popupCaptureElement.textContent = element.name;
-    openPopup(imagePopup);
-  }
-
-  cardImage.addEventListener('click', zoomedPopup);
-
-  const deleteButton = newCard.querySelector('.element__delete-button');
-  deleteButton.addEventListener('click', handleDeleteButtonClick);
-
-  newCard.querySelector('.element__like-button').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('element__like-button_active');
-  })
-
-  return newCard;
-}
-
-function renderCard(element) {
-  const renderedCard = createCard(element);
-  cardsContainer.prepend(renderedCard);
-}
-
-// Функция удаления карточки
-function handleDeleteButtonClick(evt) {
-  const button = evt.target;
-  const card = button.closest('.element');
-  card.remove();
+function renderCard(data) {
+  const renderedCard = new Card(data, '#element-template');
+  const newCard = renderedCard.createCard();
+  cardsContainer.prepend(newCard);
 }
 
 initialCards.reverse();
