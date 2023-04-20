@@ -1,4 +1,4 @@
-const config = {
+export const config = {
   formSelector: 'popup__container',
   inputSelector: '.popup__input',
   errorClassTemplate: '.popup__input-error_type_',

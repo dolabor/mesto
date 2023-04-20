@@ -1,6 +1,8 @@
+import {initialCards} from './InitialCards';
+import {openPopup, closePopup, imagePopup} from './utils.js';
+import {config} from './config.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
-import {openPopup, closePopup, imagePopup} from './utils.js';
 
 // Собираем HTML элементы страницы в переменные //
 
@@ -68,8 +70,7 @@ function renderCard(data) {
   cardsContainer.prepend(newCard);
 }
 
-initialCards.reverse();
-initialCards.forEach(renderCard);
+initialCards.reverse().forEach(renderCard);
 
 editProfileButton.addEventListener('click', function () {
   editFormElement.reset();
@@ -81,7 +82,6 @@ editProfileButton.addEventListener('click', function () {
 
 
 addPlaceButton.addEventListener('click', function () {
-  addFormElement.reset();
   openPopup(addPlacePopup);
   addPlaceFormValidation.clearInputError();
 });

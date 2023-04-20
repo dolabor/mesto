@@ -27,7 +27,7 @@ export default class Card {
   };
 
   // Функция popup с увеличенным изображением карточки
-  _zoomedPopup = () => {
+  _zoomPopup = () => {
     popupEnlargedImage.setAttribute('src', this._link);
     popupEnlargedImage.setAttribute('alt', this._name);
     popupCaptureElement.textContent = this._name;
@@ -42,7 +42,7 @@ export default class Card {
     const deleteButton = this._newCard.querySelector('.element__delete-button');
 
     deleteButton.addEventListener('click', this._handleDeleteButtonClick);
-    this._cardImage.addEventListener('click', this._zoomedPopup);
+    this._cardImage.addEventListener('click', this._zoomPopup);
     this._newCard.querySelector('.element__like-button').addEventListener('click', this._handleLikeButton);
   };
 };
