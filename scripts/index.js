@@ -1,6 +1,6 @@
-import {initialCards} from './InitialCards';
-import {openPopup, closePopup, imagePopup} from './utils.js';
+import {initialCards} from './InitialCards.js';
 import {config} from './config.js';
+import {openPopup, closePopup, imagePopup} from './utils.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 
@@ -59,7 +59,6 @@ function handleFormAddPlacesSubmit(evt) {
     name: nameInput.value,
     link: imageInput.value
   }
-  addFormElement.reset();
   closePopup(addPlacePopup);
   renderCard(addedCard);
 }
@@ -82,6 +81,7 @@ editProfileButton.addEventListener('click', function () {
 
 
 addPlaceButton.addEventListener('click', function () {
+  addFormElement.reset();
   openPopup(addPlacePopup);
   addPlaceFormValidation.clearInputError();
 });
