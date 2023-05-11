@@ -1,8 +1,13 @@
-import {initialCards} from './InitialCards.js';
-import {config} from './config.js';
-import {openPopup, closePopup, imagePopup} from './utils.js';
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
+import {initialCards} from '../utils/InitialCards.js';
+import {config} from '../utils/config.js';
+import {imagePopup} from '../utils/utils.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import Section from "../components/Section.js";
+import Popup from "../components/Popup.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import UserInfo from "../components/UserInfo.js";
 
 // Собираем HTML элементы страницы в переменные //
 
@@ -100,3 +105,29 @@ imagePopupCloseButton.addEventListener('click', function () {
 
 editFormElement.addEventListener('submit', handleFormEditProfileSubmit);
 addFormElement.addEventListener('submit', handleFormAddPlacesSubmit);
+
+// 8 СПРИНТ
+
+const cardTemplate = document
+  .querySelector(cardTemplateSelector)
+  .content.querySelector('.element');
+
+this._cardImage.addEventListener('click', this._zoomPopup);
+
+const section = new Section({
+    items: [],
+    renderer: (element) => {
+
+    }
+  },
+  '.destinations');
+
+section.renderer(items);
+//   const popupEditProfile = new PopupWithForm('.popup_type_edit-profile', (formData) => {
+//   // отправить данные формы на сервер и обновить информацию на странице
+// });
+//
+// const popupAddCard = new PopupWithForm('.popup_type_add-card', (formData) => {
+//   // отправить данные формы на сервер и добавить новую карточку на страницу
+// });
+
