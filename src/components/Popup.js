@@ -15,13 +15,13 @@ export default class Popup {
     document.removeEventListener('click', this._closePopupByClickOverlay);
   }
 
-  _closePopupByClickEscape(evt) {
+  _closePopupByClickEscape = (evt) => {
     if (evt.key === 'Escape') {
       this.close(this._popup);
     }
   }
 
-  _closePopupByClickOverlay(evt) {
+  _closePopupByClickOverlay= (evt) => {
     if (evt.target.classList.contains('popup_opened')) {
       this.close(evt.target);
     }
@@ -30,11 +30,6 @@ export default class Popup {
   setEventListeners() {
     const closeButton = this._popup.querySelector('.popup__close-button');
     closeButton.addEventListener('click', () => this.close());
-    closeButton.addEventListener('click', this._closePopupByClickEscape);
-    this._popup.addEventListener('click', (evt) => {
-      if (evt.target.classList.contains('popup_opened'))
-        this.close(evt.target);
-    });
   };
 }
 

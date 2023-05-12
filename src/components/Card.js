@@ -17,6 +17,7 @@ export default class Card {
 
   createCard() {
     this._newCard = this._getTemplate();
+    this._likeButton = this._newCard.querySelector('.element__like-button');
     const cardName = this._newCard.querySelector('.element__name');
     cardName.textContent = this._name;
     this._cardImage = this._newCard.querySelector('.element__image');
@@ -28,13 +29,12 @@ export default class Card {
     return this._newCard;
   }
 
-
   _handleDeleteButtonClick = () => {
     this._newCard.remove();
   };
 
   _handleLikeButton = () => {
-    this._newCard.querySelector('.element__like-button').classList.toggle('element__like-button_active');
+    this._likeButton.classList.toggle('element__like-button_active');
   };
 
   _setEventListeners() {

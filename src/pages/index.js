@@ -22,12 +22,11 @@ function renderCard(data) {
   const renderedCard = new Card(data, '#element-template', () => {
     imagePopup.open(data);
   });
-  const newCard = renderedCard.createCard();
-  cardsContainer.prepend(newCard);
-  return newCard;
+
+  return renderedCard.createCard();
 }
 
-const handleSubmit = (data) => {
+const handleCardSubmit = (data) => {
   const addedCard = renderCard({
     name: data.title,
     link: data['image-ref'],
@@ -35,8 +34,6 @@ const handleSubmit = (data) => {
   section.addItem(addedCard);
   popupAddPlace.close();
 }
-
-initialCards.reverse().forEach(renderCard);
 
 const handleFormEditProfileSubmit = (data) => {
   const {name, occupation} = data;
@@ -50,10 +47,12 @@ const section = new Section({
   },
   '.destinations');
 
+section.renderItems();
+
 const imagePopup = new PopupWithImage('#enlarged-image');
 imagePopup.setEventListeners();
 const popupEditProfile = new PopupWithForm('#edit-profile-form', handleFormEditProfileSubmit);
-const popupAddPlace = new PopupWithForm('#add-place-form', handleSubmit);
+const popupAddPlace = new PopupWithForm('#add-place-form', handleCardSubmit);
 const userInfo = new UserInfo({
   nameSelector: '.profile__title',
   occupationSelector: '.profile__subtitle'
@@ -65,7 +64,6 @@ popupAddPlace.setEventListeners();
 
 
 editProfileButton.addEventListener('click', function () {
-  editFormElement.reset();
   editProfileFormValidation.clearInputError();
   const userData = userInfo.getUserInfo();
   userName.value = userData.name;
@@ -75,12 +73,9 @@ editProfileButton.addEventListener('click', function () {
 });
 
 addPlaceButton.addEventListener('click', function () {
-  addFormElement.reset();
   addPlaceFormValidation.clearInputError();
   popupAddPlace.open();
 });
-
-section.renderItems();
 
 
 
