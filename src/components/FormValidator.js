@@ -48,8 +48,8 @@ export default class FormValidator {
   }
 
   _setEventListeners() {
-    this._form.addEventListener('submit', (e) => {
-      e.preventDefault();
+    this._form.addEventListener('submit', (evt) => {
+      evt.preventDefault();
     });
 
     this._inputList.forEach((input) => {

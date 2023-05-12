@@ -6,100 +6,81 @@ import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
-import { userName, userOccupation, userNameElement, userOccupationElement,
-  editProfileButton, addPlaceButton, editProfilePopup, addPlacePopup,
-  editFormElement, addFormElement, editProfilePopupCloseButton,
-  addPlacePopupCloseButton, imagePopupCloseButton, cardsContainer,
-  imageInput, nameInput, cardTemplate } from '../utils/constants.js';
-
-
-const editProfileFormValidation = new FormValidator(config, editFormElement);
-const addPlaceFormValidation = new FormValidator(config, addFormElement);
+import {
+  userName, userOccupation, editProfileButton,
+  addPlaceButton, editFormElement, addFormElement, cardsContainer,
+} from '../utils/constants.js';
 
 // Экземпляр класса FormValidator для каждой формы //
+const editProfileFormValidation = new FormValidator(config, editFormElement);
+const addPlaceFormValidation = new FormValidator(config, addFormElement);
 editProfileFormValidation.enableValidation();
 addPlaceFormValidation.enableValidation();
 
-// Функция формы отправки данных о пользователе //
-function handleFormEditProfileSubmit(evt) {
-  evt.preventDefault();
-  userNameElement.textContent = userName.value;
-  userOccupationElement.textContent = userOccupation.value;
-  closePopup(editProfilePopup);
-}
-
-//Функция отправки формы о местах //
-function handleFormAddPlacesSubmit(evt) {
-  evt.preventDefault();
-  const addedCard = {
-    name: nameInput.value,
-    link: imageInput.value
-  }
-  closePopup(addPlacePopup);
-  renderCard(addedCard);
-}
-
 function renderCard(data) {
-  const renderedCard = new Card(data, '#element-template');
+  const renderedCard = new Card(data, '#element-template', () => {
+    imagePopup.open(data);
+  });
   const newCard = renderedCard.createCard();
   cardsContainer.prepend(newCard);
+  return newCard;
+}
+
+const handleSubmit = (data) => {
+  const addedCard = renderCard({
+    name: data.title,
+    link: data['image-ref'],
+  });
+  section.addItem(addedCard);
+  popupAddPlace.close();
 }
 
 initialCards.reverse().forEach(renderCard);
 
-editProfileButton.addEventListener('click', function () {
-  editFormElement.reset();
-  userName.value = userNameElement.textContent;
-  userOccupation.value = userOccupationElement.textContent;
-  openPopup(editProfilePopup);
-  editProfileFormValidation.clearInputError();
-});
-
-
-addPlaceButton.addEventListener('click', function () {
-  addFormElement.reset();
-  openPopup(addPlacePopup);
-  addPlaceFormValidation.clearInputError();
-});
-
-editProfilePopupCloseButton.addEventListener('click', function () {
-  closePopup(editProfilePopup);
-});
-
-addPlacePopupCloseButton.addEventListener('click', function () {
-  closePopup(addPlacePopup);
-});
-
-imagePopupCloseButton.addEventListener('click', function () {
-  closePopup(imagePopup);
-});
-
-editFormElement.addEventListener('submit', handleFormEditProfileSubmit);
-addFormElement.addEventListener('submit', handleFormAddPlacesSubmit);
-
-// 8 СПРИНТ
-
-const imagePopup = new PopupWithImage('#enlarged-image');
-imagePopup.setEventListeners();
-
-this._cardImage.addEventListener('click', this._zoomPopup);
+const handleFormEditProfileSubmit = (data) => {
+  const {name, occupation} = data;
+  userInfo.setUserInfo(name, occupation);
+  popupEditProfile.close();
+}
 
 const section = new Section({
-    items: [],
-    renderer: (element) => {
-
-    }
+    items: initialCards,
+    renderer: renderCard
   },
   '.destinations');
 
-section.renderer(items);
-//   const popupEditProfile = new PopupWithForm('.popup_type_edit-profile', (formData) => {
-//   // отправить данные формы на сервер и обновить информацию на странице
-// });
-//
-// const popupAddCard = new PopupWithForm('.popup_type_add-card', (formData) => {
-//   // отправить данные формы на сервер и добавить новую карточку на страницу
-// });
+const imagePopup = new PopupWithImage('#enlarged-image');
+imagePopup.setEventListeners();
+const popupEditProfile = new PopupWithForm('#edit-profile-form', handleFormEditProfileSubmit);
+const popupAddPlace = new PopupWithForm('#add-place-form', handleSubmit);
+const userInfo = new UserInfo({
+  nameSelector: '.profile__title',
+  occupationSelector: '.profile__subtitle'
+})
+
+imagePopup.setEventListeners();
+popupEditProfile.setEventListeners();
+popupAddPlace.setEventListeners();
+
+
+editProfileButton.addEventListener('click', function () {
+  editFormElement.reset();
+  editProfileFormValidation.clearInputError();
+  const userData = userInfo.getUserInfo();
+  userName.value = userData.name;
+  userOccupation.value = userData.occupation;
+  popupEditProfile.open();
+
+});
+
+addPlaceButton.addEventListener('click', function () {
+  addFormElement.reset();
+  addPlaceFormValidation.clearInputError();
+  popupAddPlace.open();
+});
+
+section.renderItems();
+
 
 
 

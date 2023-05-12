@@ -3,10 +3,7 @@ export {
   editProfileButton, addPlaceButton, editProfilePopup, addPlacePopup,
   editFormElement, addFormElement, editProfilePopupCloseButton,
   addPlacePopupCloseButton, imagePopupCloseButton, cardsContainer,
-  imageInput, nameInput, cardTemplate,
-  popupEnlargedImage, popupCaptureElement};
-
-// Собираем HTML элементы страницы в переменные //
+  imageInput, nameInput};
 
 // * редактирование профиля пользователя* //
 const userName = document.querySelector('#name'); // поиск в input popup
@@ -37,13 +34,5 @@ const cardsContainer = document.querySelector('.destinations');
 // *добавление новой карточки через форму* //
 const imageInput = document.querySelector('#image-ref');
 const nameInput = document.querySelector('#title');
-
-const cardTemplate = document
-  .querySelector(cardTemplateSelector)
-  .content.querySelector('.element');
-
-// переменные для попапа с фото локаций
-const popupEnlargedImage = document.querySelector('.popup__enlarged-photo');
-const popupCaptureElement = document.querySelector('#popup-capture');
 
 

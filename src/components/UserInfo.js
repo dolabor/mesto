@@ -1,19 +1,20 @@
+
 export default class UserInfo {
-  constructor({ popupCaptureElement, popupEnlargedImage }) {
-    this._popupCaptureElement = document.querySelector(popupCaptureElement);
-    this._popupEnlargedImage = document.querySelector(popupEnlargedImage);
+  constructor( {nameSelector, occupationSelector} ) {
+    this._popupNameElement = document.querySelector(nameSelector);
+    this._popupOccupationElement = document.querySelector(occupationSelector);
   }
 
   getUserInfo() {
     return {
-      name: this._nameElement.textContent,
-      info: this._infoElement.textContent,
+      name: this._popupNameElement.textContent,
+      occupation: this._popupOccupationElement.textContent,
     };
   }
 
-  setUserInfo({ name, info }) {
-    this._nameElement.textContent = name;
-    this._infoElement.textContent = info;
+  setUserInfo(name, occupation) {
+    this._popupNameElement.textContent = name;
+    this._popupOccupationElement.textContent = occupation;
   }
 }
 
