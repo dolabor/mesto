@@ -69,7 +69,6 @@ editProfileButton.addEventListener('click', function () {
   userName.value = userData.name;
   userOccupation.value = userData.occupation;
   popupEditProfile.open();
-
 });
 
 addPlaceButton.addEventListener('click', function () {
