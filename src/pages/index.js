@@ -21,11 +21,12 @@ const section = new Section({
 const imagePopup = new PopupWithImage('#enlarged-image');
 const popupEditProfile = new PopupWithForm('#edit-profile-form', handleFormEditProfileSubmit);
 const popupAddPlace = new PopupWithForm('#add-place-form', handleCardSubmit);
+const confirmDeletePopup = new PopupWithForm('.popup_confirm-delete', handleCardSubmit);
 const userInfo = new UserInfo({
   nameSelector: '.profile__title',
   occupationSelector: '.profile__subtitle'
 });
-const confirmDeletePopup = new PopupWithForm('.popup_confirm-delete', handleCardSubmit)
+let userId
 
 const editProfileFormValidation = new FormValidator(config, editFormElement);
 const addPlaceFormValidation = new FormValidator(config, addFormElement);
@@ -33,6 +34,8 @@ const addPlaceFormValidation = new FormValidator(config, addFormElement);
 api.getProfile()
   .then((res) => {
     userInfo.setUserInfo(res.name, res.about);
+
+    userId = res._id;
   })
   .catch(err => {
     console.log(err);
@@ -41,11 +44,14 @@ api.getProfile()
 api.getInitialCards()
   .then((cardList) => {
     cardList.forEach(data => {
+      console.log(data)
       const card = renderCard({
         name: data.name,
         link: data.link,
         likes: data.likes,
-        cardId: data.id
+        cardId: data._id,
+        userId: userId,
+        ownerId: data.owner._id
       });
       section.addItem(card);
       section.renderItems();
@@ -83,7 +89,7 @@ function renderCard(data) {
     (id) => {
       confirmDeletePopup.open();
       confirmDeletePopup.changeCardSubmit(() => {
-        api.handleDeleteCard(id)
+        api.deleteCard(id)
           .then((res) => {
             card.deleteCard();
             confirmDeletePopup.close();
@@ -105,7 +111,9 @@ function handleCardSubmit(data) {
         name: res.name,
         link: res.link,
         likes: res.likes,
-        cardId: res._id
+        cardId: res._id,
+        userId: userId,
+        ownerId: res.owner._id
       });
       section.addItem(addedCard);
       popupAddPlace.close();
@@ -120,7 +128,6 @@ function handleFormEditProfileSubmit(data) {
 
   api.editProfile(name, occupation)
     .then((res) => {
-      console.log('res', res);
       userInfo.setUserInfo(name, occupation);
       popupEditProfile.close();
     })

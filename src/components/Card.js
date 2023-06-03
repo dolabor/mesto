@@ -1,9 +1,12 @@
 export default class Card {
-  constructor(data, cardTemplateSelector, handleCardClick, handleDeleteClick, ) {
+  constructor(data, cardTemplateSelector, handleCardClick, handleDeleteClick) {
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes;
-    this._id = data.id;
+    this._id = data.cardId;
+    this._userId = data.userId;
+    this._ownerId = data.ownerId;
+
     this._cardTemplateSelector = cardTemplateSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
@@ -19,8 +22,7 @@ export default class Card {
   }
 
   _setLikes() {
-    const likeCountElement = this._newCard.querySelector('.element__like-count');
-    likeCountElement.textContent = this._likes.length;
+    this._likeCountElement.textContent = this._likes.length;
   }
 
   createCard() {
@@ -28,7 +30,10 @@ export default class Card {
     this._likeButton = this._newCard.querySelector('.element__like-button');
     const cardName = this._newCard.querySelector('.element__name');
     cardName.textContent = this._name;
+    this._likeCountElement = this._newCard.querySelector('.element__like-count');
     this._cardImage = this._newCard.querySelector('.element__image');
+    this._deleteTrashButton = this._newCard.querySelector('.element__delete-button');
+    console.log(this._deleteTrashButton)
     this._cardImage.setAttribute('src', this._link);
     this._cardImage.setAttribute('alt', this._name);
 
@@ -36,12 +41,15 @@ export default class Card {
 
     this._setEventListeners();
 
+    if (this._ownerId !== this._userId) {
+      this._deleteTrashButton.style.display = 'none';
+    }
+
     return this._newCard;
   }
 
   deleteCard = () => {
     this._newCard.remove();
-    this._newCard = null;
   };
 
   _handleLikeButton = () => {
@@ -58,7 +66,3 @@ export default class Card {
     });
   };
 };
-
-
-
-
