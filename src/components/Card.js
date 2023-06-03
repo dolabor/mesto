@@ -34,9 +34,7 @@ export default class Card {
   }
 
   isLiked() {
-    const likedCard = this._likes.find(user => user._id === this._userId)
-
-    return likedCard
+    return this._likes.find(user => user._id === this._userId)
   }
 
   _fillLikeIcon = () => {

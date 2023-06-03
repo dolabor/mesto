@@ -16,7 +16,7 @@ export default class UserInfo {
   setUserInfo(name, occupation, avatar) {
     this._popupNameElement.textContent = name;
     this._popupOccupationElement.textContent = occupation;
-    this._avatarElement.src = avatar;
+    this._avatarElement.setAttribute('src', avatar);
   }
 }
 

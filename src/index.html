@@ -14,8 +14,9 @@
   <main>
     <section class="profile">
       <div class="profile__info">
-        <div class="profile__avatar"></div>
-
+        <div class="profile__avatar">
+          <img class="profile__avatar-image" src="<%=require('./images/profile-avatar.jpg')%>">
+        </div>
         <div class="profile__heading">
           <div class="profile__username">
             <h1 class="profile__title" id="user-name"></h1>
@@ -154,9 +155,9 @@
         class="popup__input"
         type="url"
         placeholder="Ссылка на аватар"
-        name="image-ref"
+        name="avatar-ref"
         required>
-      <span class="popup__input-error popup__input-error_type_image-ref">Введите URL.</span>
+      <span class="popup__input-error popup__input-error_type_avatar-ref">Введите URL.</span>
       <label for="avatar-ref"></label>
       <button class="popup__submit-button button" type="submit" aria-label="Сохранить">Сохранить</button>
     </form>

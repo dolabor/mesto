@@ -1,3 +1,5 @@
+import {avatarContainer} from "../utils/constants";
+
 class Api {
   constructor({baseUrl, headers}) {
     this._headers = headers;
@@ -113,7 +115,7 @@ class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar
+        avatar: avatar
       })
     })
       .then((res) => {
