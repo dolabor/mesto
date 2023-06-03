@@ -8,13 +8,16 @@
 .element__caption{background-color:#fff;border-radius:0 0 10px 10px;display:flex;justify-content:space-between;padding:25px 15px 31px 21px}
 .element__delete-button{position:absolute;right:20px;top:20px}
 .element__like-button{padding:0}
+.element__like-section{align-items:center;display:flex;flex-direction:column}
+.element__like-count{font-size:13px;font-weight:400;line-height:16px;text-align:center}
 .element__like-button_active{background-image:url(fe17a515669479b1e649.svg);background-repeat:no-repeat;padding:0}
 .element__name{font-size:24px;font-weight:900;line-height:29px;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .header{border-bottom:1px solid rgba(84,84,84,.7);width:100%}@media (min-width:320px){.header{min-width:320px;padding:28px 0 0}}@media (min-width:1280px){.header{margin:auto;max-width:880px;padding:45px 0 40px}}
 .header__logo{display:block}@media (min-width:320px){.header__logo{height:24px;padding:0 0 32px 27px;width:104px}}@media (min-width:1280px){.header__logo{height:33px;padding:0;width:142px}}
 .profile{display:flex;flex-wrap:wrap;max-width:100%}@media (min-width:320px){.profile{flex-direction:column;justify-content:center;min-width:280px;padding:42px 19px 36px}}@media (min-width:768px){.profile{flex-direction:row;justify-content:space-between;min-width:480px;padding:42px 48px 0}}@media (min-width:1280px){.profile{justify-content:space-between;margin:auto;max-width:880px}}
 .profile__add-button{border:2px solid #fff;border-radius:2px;max-width:100%}@media (min-width:320px){.profile__add-button{height:16px;padding:17px 132px 17px 134px;width:16px}}@media (min-width:768px){.profile__add-button{height:22px;padding:14px 64px;width:22px}}
-.profile__avatar{border-radius:50%;height:120px;width:120px}
+.profile__avatar{margin:0 auto 26px;position:relative;z-index:1}.profile__avatar:hover:after{background-color:rgba(0,0,0,.8);background-image:url(a086f758840ae814ecde.svg);background-position:50%;background-repeat:no-repeat;background-size:26px;content:"";cursor:pointer;height:100%;left:0;position:absolute;top:0;width:100%;z-index:2}
+.profile__avatar-image{border-radius:50%;height:120px;-o-object-fit:cover;object-fit:cover;width:120px}
 .profile__edit-button{padding:0}
 .profile__edit-icon{height:18px;padding:4px 0 0 10px;width:18px}@media (min-width:768px){.profile__edit-icon{height:24px;padding:8px 0 0 18px;width:24px}}
 .profile__heading{align-items:center;display:flex;flex-direction:column}@media (min-width:320px){.profile__heading{padding:26px 0 36px}}@media (min-width:768px){.profile__heading{align-items:flex-start}}
@@ -30,7 +33,7 @@
 .popup__submit-button{background-color:#000;border:none;border-radius:2px;color:#fff;cursor:pointer;font-weight:400;margin:0;text-align:center;text-decoration:none;width:100%}.popup__submit-button:hover{opacity:.8}@media (min-width:320px){.popup__submit-button{font-size:14px;line-height:17px;margin-top:14px;padding:16px 0}}@media (min-width:1280px){.popup__submit-button{font-size:18px;line-height:22px;margin-top:7px;padding:14px 82px}}
 .popup__close-button{background-color:transparent;position:absolute}@media (min-width:320px){.popup__close-button{right:0;top:-32px}}@media (min-width:768px){.popup__close-button{right:-36px;top:-36px}}
 .popup__close-button-image{height:20px;width:20px}@media (min-width:768px){.popup__close-button-image{height:32px;width:32px}}
-.popup__title{font-size:18px;font-weight:900;line-height:22px;margin:0;padding:0 0 75px}@media (min-width:1280px){.popup__title{font-size:24px;line-height:29px;padding:0 0 54px}}
+.popup__title{-webkit-margin-before:0;-webkit-margin-after:0;font-size:18px;font-weight:900;line-height:22px;margin:0;margin-block-end:0;margin-block-start:0;padding:0 0 75px}@media (min-width:1280px){.popup__title{font-size:24px;line-height:29px;padding:0 0 54px}}
 .popup_opened{opacity:1;pointer-events:all;visibility:visible}
 .popup__input{border:none;border-bottom:1px solid rgba(0,0,0,.2);font-size:14px;font-weight:400;line-height:17px;padding:0 0 13px;width:100%}
 .popup__enlarged-photo{max-height:75vh;max-width:75vw}
@@ -40,4 +43,5 @@
 .popup__input-error{border-top:1px solid red;color:red;display:block;font-size:12px;font-weight:400;line-height:15px;min-height:30px;text-decoration:none;visibility:hidden;width:100%}
 .popup__submit-button_inactive{background-color:transparent;border:1px solid #000;color:#000;opacity:.2;pointer-events:none;transition:none}
 .popup__input-error_active{visibility:visible}
+
 
