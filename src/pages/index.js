@@ -11,57 +11,49 @@ import {
   userName, userOccupation, editProfileButton,
   addPlaceButton, editFormElement, addFormElement, cardsContainer,
 } from '../utils/constants.js';
-
-// Экземпляр класса FormValidator для каждой формы //
-const editProfileFormValidation = new FormValidator(config, editFormElement);
-const addPlaceFormValidation = new FormValidator(config, addFormElement);
-editProfileFormValidation.enableValidation();
-addPlaceFormValidation.enableValidation();
-
-function renderCard(data) {
-  const renderedCard = new Card(data, '#element-template', () => {
-    imagePopup.open(data);
-  });
-
-  return renderedCard.createCard();
-}
-
-const handleCardSubmit = (data) => {
-  const addedCard = renderCard({
-    name: data.title,
-    link: data['image-ref'],
-  });
-  section.addItem(addedCard);
-  popupAddPlace.close();
-}
-
-const handleFormEditProfileSubmit = (data) => {
-  const {name, occupation} = data;
-  userInfo.setUserInfo(name, occupation);
-  popupEditProfile.close();
-}
+import {api} from '../components/Api.js';
 
 const section = new Section({
-    items: initialCards,
-    renderer: renderCard
-  },
-  '.destinations');
-
-section.renderItems();
+  items: [],
+  renderer: renderCard
+}, '.destinations');
 
 const imagePopup = new PopupWithImage('#enlarged-image');
-imagePopup.setEventListeners();
 const popupEditProfile = new PopupWithForm('#edit-profile-form', handleFormEditProfileSubmit);
 const popupAddPlace = new PopupWithForm('#add-place-form', handleCardSubmit);
 const userInfo = new UserInfo({
   nameSelector: '.profile__title',
   occupationSelector: '.profile__subtitle'
-})
+});
+const confirmDeletePopup = new PopupWithForm('.popup_confirm-delete', handleCardSubmit)
 
-imagePopup.setEventListeners();
-popupEditProfile.setEventListeners();
-popupAddPlace.setEventListeners();
+const editProfileFormValidation = new FormValidator(config, editFormElement);
+const addPlaceFormValidation = new FormValidator(config, addFormElement);
 
+api.getProfile()
+  .then((res) => {
+    userInfo.setUserInfo(res.name, res.about);
+  })
+  .catch(err => {
+    console.log(err);
+  });
+
+api.getInitialCards()
+  .then((cardList) => {
+    cardList.forEach(data => {
+      const card = renderCard({
+        name: data.name,
+        link: data.link,
+        likes: data.likes,
+        cardId: data.id
+      });
+      section.addItem(card);
+      section.renderItems();
+    })
+  })
+  .catch(err => {
+    console.log(err);
+  });
 
 editProfileButton.addEventListener('click', function () {
   editProfileFormValidation.clearInputError();
@@ -76,6 +68,66 @@ addPlaceButton.addEventListener('click', function () {
   popupAddPlace.open();
 });
 
+popupEditProfile.setEventListeners();
+popupAddPlace.setEventListeners();
+imagePopup.setEventListeners();
+confirmDeletePopup.setEventListeners();
 
+function renderCard(data) {
+  const card = new Card(
+    data,
+    '#element-template',
+    () => {
+      imagePopup.open(data);
+    },
+    (id) => {
+      confirmDeletePopup.open();
+      confirmDeletePopup.changeCardSubmit(() => {
+        api.handleDeleteCard(id)
+          .then((res) => {
+            card.deleteCard();
+            confirmDeletePopup.close();
+          })
+          .catch((err) => {
+            console.log(err);
+            confirmDeletePopup.close();
+          });
+      })
+    });
+  const cardElement = card.createCard();
+  return cardElement;
+}
 
+function handleCardSubmit(data) {
+  api.addNewCard(data.title, data['image-ref'])
+    .then((res) => {
+      const addedCard = renderCard({
+        name: res.name,
+        link: res.link,
+        likes: res.likes,
+        cardId: res._id
+      });
+      section.addItem(addedCard);
+      popupAddPlace.close();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
 
+function handleFormEditProfileSubmit(data) {
+  const {name, occupation} = data;
+
+  api.editProfile(name, occupation)
+    .then((res) => {
+      console.log('res', res);
+      userInfo.setUserInfo(name, occupation);
+      popupEditProfile.close();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
+
+editProfileFormValidation.enableValidation();
+addPlaceFormValidation.enableValidation();

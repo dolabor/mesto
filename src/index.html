@@ -46,6 +46,7 @@
             <button class="button" type="button" aria-label="Мне нравится">
               <img class="element__like-button" src="<%=require('./images/like.svg')%>" alt="Нравится">
             </button>
+            <span class="element__like-count"></span>
           </div>
         </div>
       </template>
@@ -128,6 +129,17 @@
       <p class="popup__capture" id="popup-capture"></p>
     </div>
   </section>
+
+  <section class="popup popup_confirm-delete" id="popup-confirm-delete">
+    <form class="popup__container" name="Подтверждение удаления карточки" novalidate>
+      <button class="button popup__close-button" type="button" aria-label="Закрыть всплывающее окно">
+        <img class="popup__close-button-image" src="<%=require('./images/Close-icon.svg')%>" alt="Закрыть">
+      </button>
+      <h2 class="popup__title">Вы уверены?</h2>
+      <button class="popup__submit-button button" type="submit" aria-label="Да">Да</button>
+    </form>
+  </section>
+
 </div>
 </body>
 </html>

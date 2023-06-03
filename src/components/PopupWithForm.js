@@ -25,6 +25,10 @@ export default class PopupWithForm extends Popup {
     this._form.reset();
   }
 
+  changeCardSubmit(newHandleCardSubmit) {
+    this._handleCardSubmit = newHandleCardSubmit;
+  }
+
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener('submit', (evt) => {
