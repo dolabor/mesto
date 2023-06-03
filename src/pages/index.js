@@ -1,5 +1,5 @@
 import './index.css';
-import {config} from '../utils/config.js';
+import { config } from '../utils/config.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from "../components/Section.js";
@@ -8,8 +8,8 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import {
   userName, userOccupation, editProfileButton,
-  addPlaceButton, editFormElement, addFormElement, editAvatarFormElement,
-  avatarContainer, avatarImage
+  addPlaceButton, editFormElement, addFormElement,
+  editAvatarFormElement, avatarContainer
 } from '../utils/constants.js';
 import {api} from '../components/Api.js';
 
@@ -125,7 +125,7 @@ function handleCardSubmit(data) {
       popupAddPlace.close();
     })
     .catch((err) => console.log(err))
-    .finally(() => popupAddPlace.renderLoading(true))
+    .finally(() => popupAddPlace.renderLoading(false))
 }
 
 function handleFormEditProfileSubmit(data) {
@@ -134,7 +134,7 @@ function handleFormEditProfileSubmit(data) {
   popupEditProfile.renderLoading(true);
   api.editProfile(name, occupation)
     .then((res) => {
-      userInfo.setUserInfo(name, occupation, data.avatar);
+      userInfo.setUserInfo(name, occupation, );
       popupEditProfile.close();
     })
     .catch((err) => console.log())
