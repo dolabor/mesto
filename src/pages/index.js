@@ -26,10 +26,10 @@ const userInfo = new UserInfo({
   nameSelector: '.profile__title',
   occupationSelector: '.profile__subtitle'
 });
-let userId
-
 const editProfileFormValidation = new FormValidator(config, editFormElement);
 const addPlaceFormValidation = new FormValidator(config, addFormElement);
+
+let userId
 
 api.getProfile()
   .then((res) => {
@@ -44,7 +44,6 @@ api.getProfile()
 api.getInitialCards()
   .then((cardList) => {
     cardList.forEach(data => {
-      console.log(data)
       const card = renderCard({
         name: data.name,
         link: data.link,
@@ -89,19 +88,34 @@ function renderCard(data) {
     (id) => {
       confirmDeletePopup.open();
       confirmDeletePopup.changeCardSubmit(() => {
-        api.deleteCard(id)
+          api.deleteCard(id)
+            .then((res) => {
+              card.deleteCard();
+              confirmDeletePopup.close();
+            })
+            .catch((err) => {
+              console.log(err);
+              confirmDeletePopup.close();
+            });
+        }
+      );
+    },
+    (id) => {
+      if (card.isLiked()) {
+        api.deleteLike(id)
           .then((res) => {
-            card.deleteCard();
-            confirmDeletePopup.close();
+            card.setLikes(res.likes)
           })
-          .catch((err) => {
-            console.log(err);
-            confirmDeletePopup.close();
-          });
-      })
-    });
-  const cardElement = card.createCard();
-  return cardElement;
+      } else {
+        api.addLike(id)
+          .then((res) => {
+            card.setLikes(res.likes)
+          })
+      }
+    },
+  );
+
+  return card.createCard();
 }
 
 function handleCardSubmit(data) {

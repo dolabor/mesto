@@ -10,7 +10,6 @@ class Api {
     })
       .then((res) => {
         if (res.ok) {
-          console.log("res", res)
           return res.json();
         }
         return Promise.reject(`Что-то пошло не так: ${res.status}`);
@@ -24,7 +23,6 @@ class Api {
     })
       .then((res) => {
         if (res.ok) {
-          console.log("res", res)
           return res.json();
         }
         return Promise.reject(`Что-то пошло не так: ${res.status}`);
@@ -43,7 +41,6 @@ class Api {
     })
       .then((res) => {
         if (res.ok) {
-          console.log("res", res)
           return res.json();
         }
         return Promise.reject(`Что-то пошло не так: ${res.status}`);
@@ -62,7 +59,6 @@ class Api {
     })
       .then((res) => {
         if (res.ok) {
-          console.log("res", res)
           return res.json();
         }
         return Promise.reject(`Что-то пошло не так: ${res.status}`);
@@ -74,6 +70,34 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this._headers
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Что-то пошло не так: ${res.status}`);
+      })
+      .catch(console.log)
+  }
+
+    deleteLike(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: "DELETE",
+      headers: this._headers
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Что-то пошло не так: ${res.status}`);
+      })
+      .catch(console.log)
+  }
+
+   addLike(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: "PUT",
+      headers: this._headers,
     })
       .then((res) => {
         if (res.ok) {
