@@ -107,6 +107,23 @@ class Api {
       })
       .catch(console.log)
   }
+
+    editAvatar(avatar) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar
+      })
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Что-то пошло не так: ${res.status}`);
+      })
+      .catch(console.log)
+  }
 }
 
 export const api = new Api({

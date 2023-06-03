@@ -23,12 +23,13 @@ export default class Card {
   }
 
   setLikes(likes) {
-    console.log(likes)
     this._likes = likes;
     this._likeCountElement.textContent = this._likes.length;
 
-    if (this.isLiked) {
-      this._handleLikeButton();
+    if (this.isLiked()) {
+      this._fillLikeIcon();
+    } else {
+      this._emptyLikeIcon();
     }
   }
 
@@ -38,8 +39,12 @@ export default class Card {
     return likedCard
   }
 
-  _handleLikeButton = () => {
-    this._likeButton.classList.toggle('element__like-button_active');
+  _fillLikeIcon = () => {
+    this._likeButton.classList.add('element__like-button_active');
+  };
+
+  _emptyLikeIcon = () => {
+    this._likeButton.classList.remove('element__like-button_active');
   };
 
   createCard() {

@@ -1,6 +1,5 @@
 import './index.css';
-import {initialCards} from '../utils/InitialCards.js';
-import {config} from '../utils/config.js';
+import { config } from '../utils/config.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from "../components/Section.js";
@@ -9,7 +8,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import {
   userName, userOccupation, editProfileButton,
-  addPlaceButton, editFormElement, addFormElement, cardsContainer,
+  addPlaceButton, editFormElement, addFormElement,
 } from '../utils/constants.js';
 import {api} from '../components/Api.js';
 
@@ -28,6 +27,14 @@ const userInfo = new UserInfo({
 });
 const editProfileFormValidation = new FormValidator(config, editFormElement);
 const addPlaceFormValidation = new FormValidator(config, addFormElement);
+
+const changeAvatarPopup = new PopupWithForm('.popup_change-avatar', () => {
+  api.editAvatar()
+    .then((res) => {
+      userInfo.setUserInfo(res.name, res.about, res.link)
+      changeAvatarPopup.close();
+    })
+})
 
 let userId
 
@@ -59,24 +66,6 @@ api.getInitialCards()
   .catch(err => {
     console.log(err);
   });
-
-editProfileButton.addEventListener('click', function () {
-  editProfileFormValidation.clearInputError();
-  const userData = userInfo.getUserInfo();
-  userName.value = userData.name;
-  userOccupation.value = userData.occupation;
-  popupEditProfile.open();
-});
-
-addPlaceButton.addEventListener('click', function () {
-  addPlaceFormValidation.clearInputError();
-  popupAddPlace.open();
-});
-
-popupEditProfile.setEventListeners();
-popupAddPlace.setEventListeners();
-imagePopup.setEventListeners();
-confirmDeletePopup.setEventListeners();
 
 function renderCard(data) {
   const card = new Card(
@@ -150,5 +139,30 @@ function handleFormEditProfileSubmit(data) {
     });
 }
 
+editProfileButton.addEventListener('click', function () {
+  editProfileFormValidation.clearInputError();
+  const userData = userInfo.getUserInfo();
+  userName.value = userData.name;
+  userOccupation.value = userData.occupation;
+  popupEditProfile.open();
+});
+
+addPlaceButton.addEventListener('click', function () {
+  addPlaceFormValidation.clearInputError();
+  popupAddPlace.open();
+});
+
+addPlaceButton.addEventListener('click', function () {
+  addPlaceFormValidation.clearInputError();
+  popupAddPlace.open();
+});
+
+popupEditProfile.setEventListeners();
+popupAddPlace.setEventListeners();
+imagePopup.setEventListeners();
+confirmDeletePopup.setEventListeners();
+popupChangeAvatar.setEventListeners();
+
 editProfileFormValidation.enableValidation();
 addPlaceFormValidation.enableValidation();
+popupChangeAvatar.enableValidation();
