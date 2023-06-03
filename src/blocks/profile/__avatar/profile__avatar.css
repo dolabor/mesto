@@ -1,5 +1,4 @@
 .profile__avatar {
-  z-index: 1;
   position: relative;
   margin: 0 auto 26px;
 }
@@ -17,5 +16,4 @@
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
-  z-index: 2;
 }

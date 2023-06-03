@@ -5,6 +5,7 @@ import FormValidator from '../components/FormValidator.js';
 import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import PopupDeleteConfirmation from '../components/PopupDeleteConfirmation.js';
 import UserInfo from "../components/UserInfo.js";
 import {
   userName, userOccupation, editProfileButton,
@@ -13,35 +14,11 @@ import {
 } from '../utils/constants.js';
 import {api} from '../components/Api.js';
 
-const section = new Section({
-  items: [],
-  renderer: renderCard
-}, '.destinations');
+Promise.all([api.getProfile(), api.getInitialCards()])
+  .then(([profileData, cardList]) => {
+    userInfo.setUserInfo(profileData.name, profileData.about, profileData.avatar);
+    userId = profileData._id;
 
-const imagePopup = new PopupWithImage('#enlarged-image');
-const popupEditProfile = new PopupWithForm('#edit-profile-form', handleFormEditProfileSubmit);
-const popupAddPlace = new PopupWithForm('#add-place-form', handleCardSubmit);
-const confirmDeletePopup = new PopupWithForm('.popup_confirm-delete');
-
-const userInfo = new UserInfo({
-  nameSelector: '.profile__title',
-  occupationSelector: '.profile__subtitle',
-  profileAvatarSelector: '.profile__avatar-image'
-});
-const editProfileFormValidation = new FormValidator(config, editFormElement);
-const addPlaceFormValidation = new FormValidator(config, addFormElement);
-const editAvatarFormValidation = new FormValidator(config, editAvatarFormElement);
-
-let userId
-
-api.getProfile()
-  .then((res) => {
-    userInfo.setUserInfo(res.name, res.about, res.avatar);
-    userId = res._id;
-  });
-
-api.getInitialCards()
-  .then((cardList) => {
     cardList.forEach(data => {
       const card = renderCard({
         name: data.name,
@@ -53,8 +30,30 @@ api.getInitialCards()
       });
       section.addItem(card);
       section.renderItems();
-    })
-  });
+    });
+  })
+  .catch((err) => console.log(err));
+
+const section = new Section({
+  items: [],
+  renderer: renderCard
+}, '.destinations');
+
+const imagePopup = new PopupWithImage('#enlarged-image');
+const popupEditProfile = new PopupWithForm('#edit-profile-form', handleFormEditProfileSubmit);
+const popupAddPlace = new PopupWithForm('#add-place-form', handleCardSubmit);
+const confirmDeletePopup = new PopupDeleteConfirmation('.popup_confirm-delete');
+
+const userInfo = new UserInfo({
+  nameSelector: '.profile__title',
+  occupationSelector: '.profile__subtitle',
+  profileAvatarSelector: '.profile__avatar-image'
+});
+const editProfileFormValidation = new FormValidator(config, editFormElement);
+const addPlaceFormValidation = new FormValidator(config, addFormElement);
+const editAvatarFormValidation = new FormValidator(config, editAvatarFormElement);
+
+let userId
 
 const changeAvatarPopup = new PopupWithForm('.popup_change-avatar', (formData) => {
   changeAvatarPopup.renderLoading(true);
@@ -96,11 +95,13 @@ function renderCard(data) {
           .then((res) => {
             card.setLikes(res.likes)
           })
+          .catch((err) => console.log(err))
       } else {
         api.addLike(id)
           .then((res) => {
             card.setLikes(res.likes)
           })
+          .catch((err) => console.log(err))
       }
     },
   );

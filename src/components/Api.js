@@ -16,7 +16,6 @@ class Api {
         }
         return Promise.reject(`Что-то пошло не так: ${res.status}`);
       })
-      .catch(console.log)
   }
 
   getInitialCards() {
@@ -29,7 +28,6 @@ class Api {
         }
         return Promise.reject(`Что-то пошло не так: ${res.status}`);
       })
-      .catch(console.log)
   }
 
   editProfile(name, about) {
@@ -47,7 +45,6 @@ class Api {
         }
         return Promise.reject(`Что-то пошло не так: ${res.status}`);
       })
-      .catch(console.log)
   }
 
   addNewCard(name, link) {
@@ -65,7 +62,6 @@ class Api {
         }
         return Promise.reject(`Что-то пошло не так: ${res.status}`);
       })
-      .catch(console.log)
   }
 
   deleteCard(id) {
@@ -79,7 +75,6 @@ class Api {
         }
         return Promise.reject(`Что-то пошло не так: ${res.status}`);
       })
-      .catch(console.log)
   }
 
     deleteLike(id) {
@@ -93,7 +88,6 @@ class Api {
         }
         return Promise.reject(`Что-то пошло не так: ${res.status}`);
       })
-      .catch(console.log)
   }
 
    addLike(id) {
@@ -107,7 +101,6 @@ class Api {
         }
         return Promise.reject(`Что-то пошло не так: ${res.status}`);
       })
-      .catch(console.log)
   }
 
     editAvatar(avatar) {
@@ -124,7 +117,6 @@ class Api {
         }
         return Promise.reject(`Что-то пошло не так: ${res.status}`);
       })
-      .catch(console.log)
   }
 }
 

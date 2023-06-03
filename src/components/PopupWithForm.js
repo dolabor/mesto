@@ -26,10 +26,6 @@ export default class PopupWithForm extends Popup {
     this._form.reset();
   }
 
-  changeCardSubmit(newHandleCardSubmit) {
-    this._handleCardSubmit = newHandleCardSubmit;
-  }
-
   renderLoading(isLoading) {
     if (isLoading) {
       this._submitButton.textContent = "Сохранение...";
