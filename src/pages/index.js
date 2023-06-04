@@ -1,5 +1,5 @@
 import './index.css';
-import { config } from '../utils/config.js';
+import {config} from '../utils/config.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from "../components/Section.js";
@@ -19,6 +19,7 @@ Promise.all([api.getProfile(), api.getInitialCards()])
     userInfo.setUserInfo(profileData.name, profileData.about, profileData.avatar);
     userId = profileData._id;
 
+    cardList.reverse();
     cardList.forEach(data => {
       const card = renderCard({
         name: data.name,
@@ -76,7 +77,7 @@ function renderCard(data) {
     },
     (id) => {
       confirmDeletePopup.open();
-      confirmDeletePopup.changeCardSubmit(() => {
+      confirmDeletePopup.setConfirmButtonClick(() => {
           api.deleteCard(id)
             .then((res) => {
               card.deleteCard();
@@ -135,7 +136,7 @@ function handleFormEditProfileSubmit(data) {
   popupEditProfile.renderLoading(true);
   api.editProfile(name, occupation)
     .then((res) => {
-      userInfo.setUserInfo(name, occupation, );
+      userInfo.setUserInfo(name, occupation,);
       popupEditProfile.close();
     })
     .catch((err) => console.log())

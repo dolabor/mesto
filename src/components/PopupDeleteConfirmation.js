@@ -6,22 +6,15 @@ export default class PopupDeleteConfirmation extends Popup {
     this._confirmButton = this._popup.querySelector('.popup__submit-button');
   }
 
-  changeCardSubmit(newHandleCardSubmit) {
-    this._handleCardSubmit = newHandleCardSubmit;
-  }
-
-  close() {
-    super.close();
-    this._form.reset();
-  }
-
-  _handleConfirmButtonClick = () => {
-    if (typeof this._confirmCallback === 'function') {
-      this._confirmCallback();
-    }
+  setConfirmButtonClick(newConfirmButtonHandler) {
+    this._handleConfirmButtonClick = newConfirmButtonHandler;
   }
 
   setEventListeners() {
-    this._confirmButton.addEventListener('click', this._handleConfirmButtonClick);
+    super.setEventListeners();
+    this._confirmButton.addEventListener('click', (evt) => {
+      evt.preventDefault();
+      this._handleConfirmButtonClick();
+    })
   }
 }
